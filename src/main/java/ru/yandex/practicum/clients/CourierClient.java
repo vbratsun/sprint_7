@@ -6,9 +6,8 @@ import ru.yandex.practicum.models.courier.CourierRequest;
 
 import static io.restassured.RestAssured.given;
 
-public class CourierClient {
+public class CourierClient extends ClientBase {
 
-    private static final String QA_SCOOTER_PRAKTIKUM_SERVICE = "https://qa-scooter.praktikum-services.ru";
     private static final String API_V1_COURIER = "/api/v1/courier";
     private static final String API_V1_COURIER_LOGIN = "/api/v1/courier/login";
 

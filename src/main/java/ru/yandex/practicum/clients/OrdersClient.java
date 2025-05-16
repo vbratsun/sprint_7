@@ -1,0 +1,19 @@
+package ru.yandex.practicum.clients;
+
+import io.restassured.response.Response;
+import ru.yandex.practicum.models.orders.OrderRequest;
+
+import static io.restassured.RestAssured.given;
+
+public class OrdersClient extends ClientBase{
+    private static final String API_V1_ORDERS = "/api/v1/orders";
+
+    public Response create(OrderRequest order) {
+        return given()
+                .baseUri(QA_SCOOTER_PRAKTIKUM_SERVICE)
+                .header("Content-type", "application/json")
+                .body(order)
+                .when()
+                .post(API_V1_ORDERS);
+    }
+}
