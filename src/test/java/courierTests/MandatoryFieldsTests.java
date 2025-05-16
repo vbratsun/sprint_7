@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.practicum.clients.CourierClient;
+import ru.yandex.practicum.constants.UserData;
 import ru.yandex.practicum.models.courier.CourierRequest;
 
 import static org.junit.Assert.assertEquals;
@@ -30,11 +31,11 @@ public class MandatoryFieldsTests{
     public static Object[] getCourierData() {
         return new Object[][]{
                 {null, null, null, 400},
-                {"vlad_bratsun", null, null, 400},
-                {null, "1", null, 400},
-                {null, null, "vlad", 400},
-                {"vlad_bratsun", null, "vlad", 400},
-                {null, "1", "vlad", 400},
+                {UserData.LOGIN, null, null, 400},
+                {null, UserData.PASSWORD, null, 400},
+                {null, null, UserData.FIRST_NAME, 400},
+                {UserData.LOGIN, null, UserData.FIRST_NAME, 400},
+                {null, UserData.PASSWORD, UserData.FIRST_NAME, 400},
         };
     }
 

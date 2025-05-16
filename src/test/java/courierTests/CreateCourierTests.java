@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.practicum.clients.CourierClient;
 import ru.yandex.practicum.constants.ErrorMessages;
+import ru.yandex.practicum.constants.UserData;
 import ru.yandex.practicum.models.courier.CourierLoginRequest;
 import ru.yandex.practicum.models.courier.CourierLoginResponse;
 import ru.yandex.practicum.models.courier.CourierRequest;
@@ -28,8 +29,8 @@ public class CreateCourierTests {
     public void setUp() {
         this.client = new CourierClient();
         this.courierId = 0;
-        this.courier = new CourierRequest("vlad_bratsun", "1", "vlad");
-        this.courierLogin = new CourierLoginRequest("vlad_bratsun", "1");
+        this.courier = new CourierRequest(UserData.LOGIN, UserData.PASSWORD, UserData.FIRST_NAME);
+        this.courierLogin = new CourierLoginRequest(UserData.LOGIN, UserData.PASSWORD);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class CreateCourierTests {
         Response courierResponse = this.client.create(this.courier);
         courierResponse.then().statusCode(201);
 
-        CourierRequest sameLoginCourier = new CourierRequest("vlad_bratsun", "2", "vova");
+        CourierRequest sameLoginCourier = new CourierRequest(UserData.LOGIN, UserData.PASSWORD_UPDATED, UserData.FIRST_NAME_UPDATED);
         Response sameLoginCourierResponse = this.client.create(sameLoginCourier);
         assertEquals("Неверный статус-код", 409, sameLoginCourierResponse.statusCode());
         assertEquals("Неверное значение поля 'message'", ErrorMessages.CREATE_ACCOUNT_ALREADY_USED, sameLoginCourierResponse.as(ErrorResponse.class).getMessage());
