@@ -13,14 +13,14 @@ import ru.yandex.practicum.models.courier.CourierRequest;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class MandatoryFieldsTests{
+public class CourierMandatoryFieldsTests {
 
     private String login;
     private String password;
     private String firstName;
     private int expectedStatusCode;
 
-    public MandatoryFieldsTests(String login, String password, String firstName, int expectedStatusCode) {
+    public CourierMandatoryFieldsTests(String login, String password, String firstName, int expectedStatusCode) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
