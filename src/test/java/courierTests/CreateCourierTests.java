@@ -36,10 +36,6 @@ public class CreateCourierTests {
     @DisplayName("Проверка создания курьера")
     @Description("Позитивная проверка возможности создания курьера")
     public void CourierCanBeCreatedTest() {
-//    курьера можно создать;
-//    запрос возвращает правильный код ответа;
-//    успешный запрос возвращает ok: true;
-
         Response courierResponse = this.client.create(this.courier);
         assertEquals("Неверный статус-код", 201, courierResponse.statusCode());
         assertTrue("Неверное значение поля 'ok'", courierResponse.as(CourierResponse.class).isOk());
