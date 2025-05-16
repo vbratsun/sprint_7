@@ -16,4 +16,12 @@ public class OrdersClient extends ClientBase{
                 .when()
                 .post(API_V1_ORDERS);
     }
+
+    public Response getList() {
+        return given()
+                .baseUri(QA_SCOOTER_PRAKTIKUM_SERVICE)
+                .header("Content-type", "application/json")
+                .when()
+                .get(API_V1_ORDERS);
+    }
 }
