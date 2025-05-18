@@ -1,6 +1,7 @@
 package ru.yandex.practicum.courier.login.tests;
 
 import org.apache.http.HttpStatus;
+import ru.yandex.practicum.base.LoginCourierTestBase;
 import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -14,7 +15,7 @@ import ru.yandex.practicum.models.courier.CourierLoginRequest;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class LoginCourierMandatoryFieldsTests extends TestBase {
+public class LoginCourierMandatoryFieldsTests extends LoginCourierTestBase {
 
     private String login;
     private String password;
@@ -41,9 +42,6 @@ public class LoginCourierMandatoryFieldsTests extends TestBase {
     @DisplayName("Проверка создания логина курьера без обязательных полей")
     @Description("Проверка невозможности логина курьера без обязательных полей")
     public void allFieldsShouldBeFilledInToLoginCourierTest() {
-        Response courierResponse = client.create(courier);
-        courierResponse.then().statusCode(HttpStatus.SC_CREATED);
-
         CourierLoginRequest courierLoginInvalid = new CourierLoginRequest(this.login,this.password);
         Response courierLoginResponse = this.client.login(courierLoginInvalid);
         assertEquals("Неверный статус-код", this.expectedStatusCode, courierLoginResponse.statusCode());
