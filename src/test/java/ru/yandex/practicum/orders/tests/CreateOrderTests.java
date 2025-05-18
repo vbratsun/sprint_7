@@ -41,7 +41,7 @@ public class CreateOrderTests {
     @Test
     @DisplayName("Проверка создания заказа")
     @Description("Позитивная проверка возможности создания заказа с разными цветами самоката")
-    public void OrderCanBeCreatedSuccessfullyTest() {
+    public void orderCanBeCreatedSuccessfullyTest() {
         OrderRequest orderRequest = getOrderWithCustomColor(this.color);
         OrdersClient client  = new OrdersClient();
 

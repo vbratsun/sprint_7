@@ -14,7 +14,7 @@ public class LoginCourierTest extends TestBase {
     @Test
     @DisplayName("Проверка логина курьера")
     @Description("Позитивная проверка возможности курьера залогиниться")
-    public void CourierCanLoginSuccessfullyTest(){
+    public void courierCanLoginSuccessfullyTest(){
         Response courierResponse = this.client.create(this.courier);
         courierResponse.then().statusCode(201);
 

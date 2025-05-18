@@ -42,7 +42,7 @@ public class CourierMandatoryFieldsTests {
     @Test
     @DisplayName("Проверка создания курьера без обязательных полей")
     @Description("Проверка невозможности создания курьера без обязательных полей")
-    public void AllFieldsShouldBeFilledInToCreateCourierTest() {
+    public void allFieldsShouldBeFilledInToCreateCourierTest() {
         CourierRequest courier = new CourierRequest(this.login, this.password, this.firstName);
         CourierClient client = new CourierClient();
 

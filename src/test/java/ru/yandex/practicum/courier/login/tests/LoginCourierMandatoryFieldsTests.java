@@ -39,7 +39,7 @@ public class LoginCourierMandatoryFieldsTests extends TestBase {
     @Test
     @DisplayName("Проверка создания логина курьера без обязательных полей")
     @Description("Проверка невозможности логина курьера без обязательных полей")
-    public void AllFieldsShouldBeFilledInToLoginCourierTest() {
+    public void allFieldsShouldBeFilledInToLoginCourierTest() {
         Response courierResponse = client.create(courier);
         courierResponse.then().statusCode(201);
 

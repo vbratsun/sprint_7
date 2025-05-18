@@ -19,7 +19,7 @@ public class CreateCourierTests extends TestBase {
     @Test
     @DisplayName("Проверка создания курьера")
     @Description("Позитивная проверка возможности создания курьера")
-    public void CourierCanBeCreatedSuccessfullyTest() {
+    public void courierCanBeCreatedSuccessfullyTest() {
         Response courierResponse = this.client.create(this.courier);
         assertEquals("Неверный статус-код", 201, courierResponse.statusCode());
         assertTrue("Неверное значение поля 'ok'", courierResponse.as(CourierResponse.class).isOk());
@@ -28,7 +28,7 @@ public class CreateCourierTests extends TestBase {
     @Test
     @DisplayName("Проверка невозможности создания 2х одинаковых курьеров")
     @Description("Проверка невозможности создания 2х курьеров с одинаковыми данными")
-    public void UnableToCreateTwoSameCouriersTest() {
+    public void unableToCreateTwoSameCouriersTest() {
         Response courierResponse = this.client.create(this.courier);
         courierResponse.then().statusCode(201);
 
@@ -40,7 +40,7 @@ public class CreateCourierTests extends TestBase {
     @Test
     @DisplayName("Проверка невозможности создания курьеров с одинаковым логином")
     @Description("Проверка невозможности создания 2х курьеров с одинаковым логином")
-    public void UnableToCreateCourierWithSameLoginTest() {
+    public void unableToCreateCourierWithSameLoginTest() {
         Response courierResponse = this.client.create(this.courier);
         courierResponse.then().statusCode(201);
 
