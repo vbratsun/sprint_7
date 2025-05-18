@@ -1,4 +1,4 @@
-package Base;
+package ru.yandex.practicum.base;
 
 import io.restassured.response.Response;
 import org.junit.After;

@@ -1,6 +1,6 @@
-package courierTests;
+package ru.yandex.practicum.courier.tests;
 
-import Base.TestBase;
+import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;

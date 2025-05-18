@@ -1,4 +1,4 @@
-package ordersTests;
+package ru.yandex.practicum.orders.tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
