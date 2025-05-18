@@ -3,6 +3,7 @@ package ru.yandex.practicum.orders.tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 import ru.yandex.practicum.clients.OrdersClient;
 
@@ -17,7 +18,7 @@ public class GetOrdersTests {
     public void getOrdersListTest(){
         OrdersClient client = new OrdersClient();
         Response ordersResponse = client.getList();
-        assertEquals("Неверный статус-код", 200, ordersResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_OK, ordersResponse.statusCode());
         ordersResponse
                 .then()
                 .assertThat()

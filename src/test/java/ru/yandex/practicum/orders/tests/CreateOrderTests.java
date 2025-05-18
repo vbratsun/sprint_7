@@ -3,6 +3,7 @@ package ru.yandex.practicum.orders.tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -46,7 +47,7 @@ public class CreateOrderTests {
         OrdersClient client  = new OrdersClient();
 
         Response orderResponse = client.create(orderRequest);
-        assertEquals("Неверный статус-код", 201, orderResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_CREATED, orderResponse.statusCode());
         assertNotEquals("track не должен быть 0", 0, orderResponse.as(OrderResponse.class).getTrack());
     }
 

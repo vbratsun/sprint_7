@@ -1,5 +1,6 @@
 package ru.yandex.practicum.courier.login.tests;
 
+import org.apache.http.HttpStatus;
 import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -28,11 +29,11 @@ public class LoginCourierMandatoryFieldsTests extends TestBase {
     @Parameterized.Parameters
     public static Object[] getLoginCourierData() {
         return new Object[][]{
-                {null, null, 400},
-                {UserData.LOGIN, null, 400},
-                {null, UserData.PASSWORD, 400},
-                {UserData.LOGIN, UserData.PASSWORD_UPDATED, 404},
-                {UserData.FIRST_NAME, UserData.PASSWORD, 404},
+                {null, null, HttpStatus.SC_BAD_REQUEST},
+                {UserData.LOGIN, null, HttpStatus.SC_BAD_REQUEST},
+                {null, UserData.PASSWORD, HttpStatus.SC_BAD_REQUEST},
+                {UserData.LOGIN, UserData.PASSWORD_UPDATED, HttpStatus.SC_NOT_FOUND},
+                {UserData.FIRST_NAME, UserData.PASSWORD, HttpStatus.SC_NOT_FOUND},
         };
     }
 
@@ -41,7 +42,7 @@ public class LoginCourierMandatoryFieldsTests extends TestBase {
     @Description("Проверка невозможности логина курьера без обязательных полей")
     public void allFieldsShouldBeFilledInToLoginCourierTest() {
         Response courierResponse = client.create(courier);
-        courierResponse.then().statusCode(201);
+        courierResponse.then().statusCode(HttpStatus.SC_CREATED);
 
         CourierLoginRequest courierLoginInvalid = new CourierLoginRequest(this.login,this.password);
         Response courierLoginResponse = this.client.login(courierLoginInvalid);

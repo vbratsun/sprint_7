@@ -1,5 +1,6 @@
 package ru.yandex.practicum.courier.tests;
 
+import org.apache.http.HttpStatus;
 import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -21,7 +22,7 @@ public class CreateCourierTests extends TestBase {
     @Description("Позитивная проверка возможности создания курьера")
     public void courierCanBeCreatedSuccessfullyTest() {
         Response courierResponse = this.client.create(this.courier);
-        assertEquals("Неверный статус-код", 201, courierResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_CREATED, courierResponse.statusCode());
         assertTrue("Неверное значение поля 'ok'", courierResponse.as(CourierResponse.class).isOk());
     }
 
@@ -30,10 +31,10 @@ public class CreateCourierTests extends TestBase {
     @Description("Проверка невозможности создания 2х курьеров с одинаковыми данными")
     public void unableToCreateTwoSameCouriersTest() {
         Response courierResponse = this.client.create(this.courier);
-        courierResponse.then().statusCode(201);
+        courierResponse.then().statusCode(HttpStatus.SC_CREATED);
 
         Response sameCourierResponse = this.client.create(this.courier);
-        assertEquals("Неверный статус-код", 409, sameCourierResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_CONFLICT, sameCourierResponse.statusCode());
         assertEquals("Неверное значение поля 'message'", ErrorMessages.CREATE_ACCOUNT_ALREADY_USED, sameCourierResponse.as(ErrorResponse.class).getMessage());
     }
 
@@ -42,11 +43,11 @@ public class CreateCourierTests extends TestBase {
     @Description("Проверка невозможности создания 2х курьеров с одинаковым логином")
     public void unableToCreateCourierWithSameLoginTest() {
         Response courierResponse = this.client.create(this.courier);
-        courierResponse.then().statusCode(201);
+        courierResponse.then().statusCode(HttpStatus.SC_CREATED);
 
         CourierRequest sameLoginCourier = new CourierRequest(UserData.LOGIN, UserData.PASSWORD_UPDATED, UserData.FIRST_NAME_UPDATED);
         Response sameLoginCourierResponse = this.client.create(sameLoginCourier);
-        assertEquals("Неверный статус-код", 409, sameLoginCourierResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_CONFLICT, sameLoginCourierResponse.statusCode());
         assertEquals("Неверное значение поля 'message'", ErrorMessages.CREATE_ACCOUNT_ALREADY_USED, sameLoginCourierResponse.as(ErrorResponse.class).getMessage());
     }
 }

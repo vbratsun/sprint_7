@@ -3,6 +3,7 @@ package ru.yandex.practicum.courier.tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -30,12 +31,12 @@ public class CourierMandatoryFieldsTests {
     @Parameterized.Parameters
     public static Object[] getCourierData() {
         return new Object[][]{
-                {null, null, null, 400},
-                {UserData.LOGIN, null, null, 400},
-                {null, UserData.PASSWORD, null, 400},
-                {null, null, UserData.FIRST_NAME, 400},
-                {UserData.LOGIN, null, UserData.FIRST_NAME, 400},
-                {null, UserData.PASSWORD, UserData.FIRST_NAME, 400},
+                {null, null, null, HttpStatus.SC_BAD_REQUEST},
+                {UserData.LOGIN, null, null, HttpStatus.SC_BAD_REQUEST},
+                {null, UserData.PASSWORD, null, HttpStatus.SC_BAD_REQUEST},
+                {null, null, UserData.FIRST_NAME, HttpStatus.SC_BAD_REQUEST},
+                {UserData.LOGIN, null, UserData.FIRST_NAME, HttpStatus.SC_BAD_REQUEST},
+                {null, UserData.PASSWORD, UserData.FIRST_NAME, HttpStatus.SC_BAD_REQUEST},
         };
     }
 

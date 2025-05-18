@@ -1,5 +1,6 @@
 package ru.yandex.practicum.courier.login.tests;
 
+import org.apache.http.HttpStatus;
 import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -16,10 +17,10 @@ public class LoginCourierTest extends TestBase {
     @Description("Позитивная проверка возможности курьера залогиниться")
     public void courierCanLoginSuccessfullyTest(){
         Response courierResponse = this.client.create(this.courier);
-        courierResponse.then().statusCode(201);
+        courierResponse.then().statusCode(HttpStatus.SC_CREATED);
 
         Response courierLoginResponse = this.client.login(courierLogin);
-        assertEquals("Неверный статус-код", 200, courierLoginResponse.statusCode());
+        assertEquals("Неверный статус-код", HttpStatus.SC_OK, courierLoginResponse.statusCode());
         assertNotEquals("ID не должен быть 0", 0, courierLoginResponse.as(CourierLoginResponse.class).getId());
     }
 }

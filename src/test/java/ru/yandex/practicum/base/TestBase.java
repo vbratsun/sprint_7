@@ -9,6 +9,8 @@ import ru.yandex.practicum.models.courier.CourierLoginRequest;
 import ru.yandex.practicum.models.courier.CourierLoginResponse;
 import ru.yandex.practicum.models.courier.CourierRequest;
 
+import static org.apache.http.HttpStatus.SC_OK;
+
 public class TestBase {
     protected CourierClient client;
     protected int courierId;
@@ -36,7 +38,7 @@ public class TestBase {
 
     protected int getExistingCourierId(CourierLoginRequest courierLogin){
         Response courierLoginResponse = this.client.login(courierLogin);
-        courierLoginResponse.then().statusCode(200);
+        courierLoginResponse.then().statusCode(SC_OK);
 
         return courierLoginResponse.as(CourierLoginResponse.class).getId();
     }
