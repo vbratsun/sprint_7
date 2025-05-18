@@ -15,7 +15,7 @@ public class LoginCourierTest extends LoginCourierTestBase {
     @Test
     @DisplayName("Проверка логина курьера")
     @Description("Позитивная проверка возможности курьера залогиниться")
-    public void courierCanLoginSuccessfullyTest(){
+    public void courierCanLoginSuccessfullyTest() {
         Response courierLoginResponse = this.client.login(courierLogin);
         assertEquals("Неверный статус-код", HttpStatus.SC_OK, courierLoginResponse.statusCode());
         assertNotEquals("ID не должен быть 0", 0, courierLoginResponse.as(CourierLoginResponse.class).getId());

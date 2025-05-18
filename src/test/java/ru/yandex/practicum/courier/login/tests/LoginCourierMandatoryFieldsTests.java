@@ -2,7 +2,6 @@ package ru.yandex.practicum.courier.login.tests;
 
 import org.apache.http.HttpStatus;
 import ru.yandex.practicum.base.LoginCourierTestBase;
-import ru.yandex.practicum.base.TestBase;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
@@ -42,7 +41,7 @@ public class LoginCourierMandatoryFieldsTests extends LoginCourierTestBase {
     @DisplayName("Проверка создания логина курьера без обязательных полей")
     @Description("Проверка невозможности логина курьера без обязательных полей")
     public void allFieldsShouldBeFilledInToLoginCourierTest() {
-        CourierLoginRequest courierLoginInvalid = new CourierLoginRequest(this.login,this.password);
+        CourierLoginRequest courierLoginInvalid = new CourierLoginRequest(this.login, this.password);
         Response courierLoginResponse = this.client.login(courierLoginInvalid);
         assertEquals("Неверный статус-код", this.expectedStatusCode, courierLoginResponse.statusCode());
     }

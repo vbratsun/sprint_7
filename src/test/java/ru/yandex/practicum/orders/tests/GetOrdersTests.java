@@ -15,7 +15,7 @@ public class GetOrdersTests {
     @Test
     @DisplayName("Проверка получения списка заказов")
     @Description("Позитивная проверка возможности получить заполненный список заказов")
-    public void getOrdersListTest(){
+    public void getOrdersListTest() {
         OrdersClient client = new OrdersClient();
         Response ordersResponse = client.getList();
         assertEquals("Неверный статус-код", HttpStatus.SC_OK, ordersResponse.statusCode());

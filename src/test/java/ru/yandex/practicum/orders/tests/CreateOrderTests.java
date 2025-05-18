@@ -44,7 +44,7 @@ public class CreateOrderTests {
     @Description("Позитивная проверка возможности создания заказа с разными цветами самоката")
     public void orderCanBeCreatedSuccessfullyTest() {
         OrderRequest orderRequest = getOrderWithCustomColor(this.color);
-        OrdersClient client  = new OrdersClient();
+        OrdersClient client = new OrdersClient();
 
         Response orderResponse = client.create(orderRequest);
         assertEquals("Неверный статус-код", HttpStatus.SC_CREATED, orderResponse.statusCode());

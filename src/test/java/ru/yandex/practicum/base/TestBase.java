@@ -36,7 +36,7 @@ public class TestBase {
         }
     }
 
-    protected int getExistingCourierId(CourierLoginRequest courierLogin){
+    protected int getExistingCourierId(CourierLoginRequest courierLogin) {
         Response courierLoginResponse = this.client.login(courierLogin);
         courierLoginResponse.then().statusCode(SC_OK);
 
